@@ -85,22 +85,22 @@
     "tslib" "^2.4.1"
     "webcrypto-core" "^1.7.4"
 
-"@prisma/client@3.15.2":
-  "integrity" "sha512-ErqtwhX12ubPhU4d++30uFY/rPcyvjk+mdifaZO5SeM21zS3t4jQrscy8+6IyB0GIYshl5ldTq6JSBo1d63i8w=="
-  "resolved" "https://registry.npmjs.org/@prisma/client/-/client-3.15.2.tgz"
-  "version" "3.15.2"
+"@prisma/client@^4.10.1":
+  "integrity" "sha512-VonXLJZybdt8e5XZH5vnIGCRNnIh6OMX1FS3H/yzMGLT3STj5TJ/OkMcednrvELgk8PK89Vo3aSh51MWNO0axA=="
+  "resolved" "https://registry.npmjs.org/@prisma/client/-/client-4.10.1.tgz"
+  "version" "4.10.1"
   dependencies:
-    "@prisma/engines-version" "3.15.1-1.461d6a05159055555eb7dfb337c9fb271cbd4d7e"
+    "@prisma/engines-version" "4.10.1-2.aead147aa326ccb985dcfed5b065b4fdabd44b19"
 
-"@prisma/engines-version@3.15.1-1.461d6a05159055555eb7dfb337c9fb271cbd4d7e":
-  "integrity" "sha512-e3k2Vd606efd1ZYy2NQKkT4C/pn31nehyLhVug6To/q8JT8FpiMrDy7zmm3KLF0L98NOQQcutaVtAPhzKhzn9w=="
-  "resolved" "https://registry.npmjs.org/@prisma/engines-version/-/engines-version-3.15.1-1.461d6a05159055555eb7dfb337c9fb271cbd4d7e.tgz"
-  "version" "3.15.1-1.461d6a05159055555eb7dfb337c9fb271cbd4d7e"
+"@prisma/engines-version@4.10.1-2.aead147aa326ccb985dcfed5b065b4fdabd44b19":
+  "integrity" "sha512-tsjTho7laDhf9EJ9EnDxAPEf7yrigSMDhniXeU4YoWc7azHAs4GPxRi2P9LTFonmHkJLMOLjR77J1oIP8Ife1w=="
+  "resolved" "https://registry.npmjs.org/@prisma/engines-version/-/engines-version-4.10.1-2.aead147aa326ccb985dcfed5b065b4fdabd44b19.tgz"
+  "version" "4.10.1-2.aead147aa326ccb985dcfed5b065b4fdabd44b19"
 
-"@prisma/engines@3.15.1-1.461d6a05159055555eb7dfb337c9fb271cbd4d7e":
-  "integrity" "sha512-NHlojO1DFTsSi3FtEleL9QWXeSF/UjhCW0fgpi7bumnNZ4wj/eQ+BJJ5n2pgoOliTOGv9nX2qXvmHap7rJMNmg=="
-  "resolved" "https://registry.npmjs.org/@prisma/engines/-/engines-3.15.1-1.461d6a05159055555eb7dfb337c9fb271cbd4d7e.tgz"
-  "version" "3.15.1-1.461d6a05159055555eb7dfb337c9fb271cbd4d7e"
+"@prisma/engines@4.10.1":
+  "integrity" "sha512-B3tcTxjx196nuAu1GOTKO9cGPUgTFHYRdkPkTS4m5ptb2cejyBlH9X7GOfSt3xlI7p4zAJDshJP4JJivCg9ouA=="
+  "resolved" "https://registry.npmjs.org/@prisma/engines/-/engines-4.10.1.tgz"
+  "version" "4.10.1"
 
 "@tsconfig/node10@^1.0.7":
   "integrity" "sha512-jNsYVVxU8v5g43Erja32laIDHXeoNvFEpX33OK4d6hljo3jDhCBDhx5dhCCTMWUojscpAagGiRkBKxpdl9fxqA=="
@@ -759,12 +759,12 @@
     "picocolors" "^1.0.0"
     "source-map-js" "^1.0.1"
 
-"prisma@*", "prisma@3.15.2":
-  "integrity" "sha512-nMNSMZvtwrvoEQ/mui8L/aiCLZRCj5t6L3yujKpcDhIPk7garp8tL4nMx2+oYsN0FWBacevJhazfXAbV1kfBzA=="
-  "resolved" "https://registry.npmjs.org/prisma/-/prisma-3.15.2.tgz"
-  "version" "3.15.2"
+"prisma@*", "prisma@^4.10.1":
+  "integrity" "sha512-0jDxgg+DruB1kHVNlcspXQB9au62IFfVg9drkhzXudszHNUAQn0lVuu+T8np0uC2z1nKD5S3qPeCyR8u5YFLnA=="
+  "resolved" "https://registry.npmjs.org/prisma/-/prisma-4.10.1.tgz"
+  "version" "4.10.1"
   dependencies:
-    "@prisma/engines" "3.15.1-1.461d6a05159055555eb7dfb337c9fb271cbd4d7e"
+    "@prisma/engines" "4.10.1"
 
 "pvtsutils@^1.3.2":
   "integrity" "sha512-+Ipe2iNUyrZz+8K/2IOo+kKikdtfhRKzNpQbruF2URmqPtoqAs8g3xS7TJvFF2GcPXjh7DkqMnpVveRFq4PgEQ=="
