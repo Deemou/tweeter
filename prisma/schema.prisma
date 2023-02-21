@@ -19,7 +19,7 @@ model User {
   email     String   @unique
   name      String
   Tokens    Token[]
-  TWeets    Tweet[]
+  Tweets    Tweet[]
   Likes     Like[]
 }
 
