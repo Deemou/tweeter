@@ -22,6 +22,17 @@
 - [x] useSession
 - [x] useInfiniteScroll
 
+## Authentication
+
+### Login
+
+- [] email과 password를 입력 받아 DB에 있는 정보와 일치하면 로그인시킨다.
+
+### Sign Up
+
+- [] email을 입력 받고 DB에 없는 email인 경우 인증 메일을 발송한다.
+- [] 인증이 완료되면 password를 입력 받아 account를 생성한다.
+
 ## 참고사항
 
 prisma.schema파일을 변경했다면 npm run db-sync를 실행한다.
