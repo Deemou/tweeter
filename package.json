@@ -16,6 +16,7 @@
     "@types/react": "18.0.14",
     "@types/react-dom": "18.0.5",
     "autoprefixer": "10.4.7",
+    "bcrypt": "^5.1.0",
     "caniuse-lite": "^1.0.30001457",
     "iron-session": "^6.3.1",
     "next": "12.1.6",
@@ -32,5 +33,9 @@
   },
   "license": "ISC",
   "keywords": [],
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "prettier": "^2.8.4",
+    "prettier-plugin-tailwindcss": "^0.2.3"
+  }
 }
