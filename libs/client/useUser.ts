@@ -12,14 +12,18 @@ export default function useUser() {
   const router = useRouter();
   const reqestUrl = "/api/users/me";
   const loginUrl = "/log-in";
-  const homepage = "/";
+  const signUpUrl = "/create-account";
   const { data, error } = useSWR<ProfileResponse>(reqestUrl);
+
+  function isAuthPages() {
+    return router.pathname === loginUrl || router.pathname === signUpUrl;
+  }
+
   useEffect(() => {
+    if (isAuthPages()) return;
     if (data && !data.ok) {
       void router.replace(loginUrl);
-    }
-    if (data && data.ok && router.pathname === loginUrl) {
-      void router.replace(homepage);
+      return;
     }
   }, [data, router]);
   return { user: data?.profile, isLoading: !data && !error };
