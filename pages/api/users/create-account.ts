@@ -2,13 +2,14 @@ import { NextApiRequest, NextApiResponse } from "next";
 import withHandler, { ResponseType } from "@libs/server/withHandler";
 import client from "@libs/server/client";
 import smtpTransport from "@/libs/server/email";
+import { hashPassword } from "@/libs/server/hash";
 
 async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseType>
 ) {
-  const { email } = req.body;
-  if (!email) return res.status(400).json({ ok: false });
+  const { email, password } = req.body;
+  if (!email || !password) return res.status(400).json({ ok: false });
   const alreadyExists = Boolean(
     await client.user.findUnique({
       where: {
@@ -22,6 +23,7 @@ async function handler(
       error: "Email already taken.",
     });
   }
+  const hashedPassword = await hashPassword(password);
   const payload = `${Math.floor(100000 + Math.random() * 900000)}`;
   const token = await client.token.create({
     data: {
@@ -30,11 +32,12 @@ async function handler(
         create: {
           name: "Anonymous",
           email,
+          password: hashedPassword,
         },
       },
     },
   });
-  console.log(token);
+  console.log("token:", token);
 
   const mailOptions = {
     from: process.env.MAIL_ID,
