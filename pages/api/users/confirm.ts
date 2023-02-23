@@ -13,11 +13,17 @@ async function handler(
       payload: token,
     },
   });
-  if (!foundToken) return res.status(404).end();
+  if (!foundToken)
+    return res.json({
+      ok: false,
+      error: "Invalid Token. Please check again.",
+    });
+
   req.session.user = {
     id: foundToken.userId,
   };
   await req.session.save();
+
   await client.token.deleteMany({
     where: {
       userId: foundToken.userId,
