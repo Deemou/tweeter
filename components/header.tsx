@@ -1,16 +1,13 @@
-import { User } from "@prisma/client";
+import useUser from "@/libs/client/useUser";
 import { useRouter } from "next/router";
-
-interface HeaderProps {
-  user?: User;
-}
 
 interface LogoutResponse {
   ok: boolean;
 }
 
-export default function Header({ user }: HeaderProps) {
+export default function Header() {
   const router = useRouter();
+  const { user } = useUser();
   const loginUrl = "/log-in";
   const signUpUrl = "/create-account";
   const logoutUrl = "/api/users/log-out";
@@ -28,13 +25,13 @@ export default function Header({ user }: HeaderProps) {
     }
   };
   return (
-    <div className="flex items-center justify-end space-x-3 p-2 px-4 font-medium text-white shadow-xl">
+    <div className="mb-6 flex items-center justify-end space-x-3 p-2 px-4 font-medium text-white">
       {!isAuthPages() ? (
         <>
           <span>Hello, {user?.name}!</span>
           <button
             onClick={onClick}
-            className="rounded-lg border border-white bg-white px-4 py-2 text-black hover:bg-slate-800 hover:text-white"
+            className="rounded-lg border border-white bg-white px-2 py-1 text-black hover:bg-black hover:text-white"
           >
             Log out
           </button>

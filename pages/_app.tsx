@@ -13,9 +13,9 @@ export default function App({ Component, pageProps }: AppProps) {
           fetch(url).then((response) => response.json()),
       }}
     >
-      <div className="h-screen w-full bg-slate-800 py-4">
-        <div className="mx-auto w-full max-w-4xl">
-          <Header user={user} />
+      <div className="min-h-screen w-full bg-black py-4">
+        <div className="mx-auto  w-full max-w-xl">
+          <Header />
           <Component {...pageProps} />
         </div>
       </div>
