@@ -8,7 +8,14 @@ async function handler(
   res: NextApiResponse<ResponseType>
 ) {
   if (req.method === "GET") {
+    const {
+      query: { page },
+    } = req;
+    const limit = 5;
+    const tweetCount = await client.tweet.count();
     const tweets = await client.tweet.findMany({
+      take: limit,
+      skip: (Number(page) - 1) * limit,
       orderBy: {
         createdAt: "desc",
       },
@@ -26,10 +33,8 @@ async function handler(
         },
       },
     });
-    res.json({
-      ok: true,
-      tweets,
-    });
+    const lastPage = Math.ceil(tweetCount / limit);
+    res.json({ ok: true, tweets, lastPage });
   }
   if (req.method === "POST") {
     const {

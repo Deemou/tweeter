@@ -2,11 +2,13 @@ import type { NextPage } from "next";
 import Button from "@components/button";
 import TextArea from "@components/textarea";
 import Thread from "@/components/thread";
+import Head from "next/head";
+import { Tweet } from "@prisma/client";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import useMutation from "@libs/client/useMutation";
-import Head from "next/head";
-import useSWR from "swr";
-import { Tweet } from "@prisma/client";
+import useInfiniteScroll from "@/libs/client/useInfiniteScroll";
+import useSWRInfinite from "swr/infinite";
 
 interface UploadTweetForm {
   text: string;
@@ -32,13 +34,30 @@ export interface TweetResponse extends Tweet {
 interface TweetsResponse {
   ok: boolean;
   tweets: TweetResponse[];
+  lastPage: number;
 }
+
+const requestUrl = "/api/tweet";
+const getKey = (pageIndex: number, previousPageData: TweetsResponse) => {
+  if (pageIndex === 0) return `${requestUrl}?page=1`;
+  if (pageIndex + 1 > previousPageData.lastPage) return null;
+  return `${requestUrl}?page=${pageIndex + 1}`;
+};
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const Home: NextPage = () => {
   const { register, handleSubmit, reset } = useForm<UploadTweetForm>();
-  const { data } = useSWR<TweetsResponse>("/api/tweet");
-  const [uploadTweet, { loading, data: uploadData }] =
+  const [uploadTweet, { loading }] =
     useMutation<UploadTweetMutation>("/api/tweet");
+
+  const { data, setSize } = useSWRInfinite<TweetsResponse>(getKey, fetcher, {
+    refreshInterval: 1000,
+  });
+
+  const page = useInfiniteScroll();
+  useEffect(() => {
+    void setSize(page);
+  }, [setSize, page]);
 
   const onValid = (tweetData: UploadTweetForm) => {
     if (loading) return;
@@ -46,14 +65,13 @@ const Home: NextPage = () => {
     reset();
   };
 
-  //useMutation bound
   return (
     <>
       <Head>
         <title>Home</title>
       </Head>
 
-      <div className="space-y-4">
+      <div className="space-y-12">
         <form
           className="space-y-4 rounded-md border border-red-200 p-4"
           onSubmit={(...args) => void handleSubmit(onValid)(...args)}
@@ -67,17 +85,20 @@ const Home: NextPage = () => {
           <Button text={loading ? "Loading..." : "Tweet"} />
         </form>
 
-        <div className="flex flex-col space-y-5">
-          {data?.tweets?.map((tweet) => (
-            <Thread
-              id={tweet.id}
-              key={tweet.id}
-              user={tweet.user}
-              text={tweet.text}
-              likes={tweet._count.likes}
-            />
-          ))}
+        <div className="flex flex-col space-y-12">
+          {data?.map((tweetsPage) => {
+            return tweetsPage.tweets?.map((tweet) => (
+              <Thread
+                id={tweet.id}
+                key={tweet.id}
+                user={tweet.user}
+                text={tweet.text}
+                likes={tweet._count.likes}
+              />
+            ));
+          })}
         </div>
+        <div></div>
       </div>
     </>
   );
