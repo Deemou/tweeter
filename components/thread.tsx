@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Textbox from "./textbox";
 
 interface IUser {
   id: number;
@@ -20,11 +21,7 @@ export default function Thread({ id, user, text, likes }: ThreadProps) {
           <div className="h-6 w-6 rounded-md bg-red-400" />
           <h3 className="font-medium">{user.name}</h3>
         </div>
-        <div className="flex space-x-4">
-          <div className="flex flex-col pt-2">
-            <span className="mt-1 font-medium">{text}</span>
-          </div>
-        </div>
+        <Textbox text={text} />
         <div className="flex items-end justify-end">
           <div className="flex items-center space-x-0.5 text-sm">
             <svg

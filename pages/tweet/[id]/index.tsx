@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import useSWR from "swr";
 import useMutation from "@/libs/client/useMutation";
 import cls from "@/libs/client/utils";
+import Textbox from "@/components/textbox";
 
 interface IUser {
   id: number;
@@ -40,12 +41,7 @@ const TweetDetail: NextPage = () => {
           <div className="h-8 w-8 rounded-md bg-red-400" />
           <h3 className="text-lg font-medium">{data?.tweet.user.name}</h3>
         </div>
-
-        <div className="flex space-x-4">
-          <div className="flex flex-col pt-2">
-            <span className="mt-1 text-lg font-medium">{data?.tweet.text}</span>
-          </div>
-        </div>
+        <Textbox text={data?.tweet.text} textSize="text-lg" />
         <div className="my-2">
           <span className="text-base">{data?.likes} Likes</span>
           <div className="flex justify-end">
