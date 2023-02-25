@@ -4,8 +4,7 @@ import TextArea from "@components/textarea";
 import Thread from "@/components/thread";
 import Head from "next/head";
 import { Tweet } from "@prisma/client";
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { FormEvent, useEffect } from "react";
 import useMutation from "@libs/client/useMutation";
 import useInfiniteScroll from "@/libs/client/useInfiniteScroll";
 import useSWRInfinite from "swr/infinite";
@@ -44,9 +43,9 @@ const getKey = (pageIndex: number, previousPageData: TweetsResponse) => {
   return `${requestUrl}?page=${pageIndex + 1}`;
 };
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
+const textId = "text";
 
 const Home: NextPage = () => {
-  const { register, handleSubmit, reset } = useForm<UploadTweetForm>();
   const [uploadTweet, { loading }] =
     useMutation<UploadTweetMutation>("/api/tweet");
 
@@ -59,10 +58,19 @@ const Home: NextPage = () => {
     void setSize(page);
   }, [setSize, page]);
 
-  const onValid = (tweetData: UploadTweetForm) => {
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     if (loading) return;
+
+    e.preventDefault();
+
+    const tar = document.getElementById(textId);
+    if (!tar) return;
+
+    const tweetData: UploadTweetForm = { text: tar.innerText };
+    if (!tweetData.text) return;
+
     uploadTweet(tweetData);
-    reset();
+    tar.innerText = "";
   };
 
   return (
@@ -73,15 +81,11 @@ const Home: NextPage = () => {
 
       <div className="space-y-12">
         <form
+          name="myForm"
           className="space-y-4 rounded-md border border-red-200 p-4"
-          onSubmit={(...args) => void handleSubmit(onValid)(...args)}
+          onSubmit={onSubmit}
         >
-          <TextArea
-            register={register("text", { required: true })}
-            name="description"
-            required
-            placeholder="What's happening?"
-          ></TextArea>
+          <TextArea name={textId} placeholder="What's happening?"></TextArea>
           <Button text={loading ? "Loading..." : "Tweet"} />
         </form>
 
