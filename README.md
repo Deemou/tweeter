@@ -32,7 +32,7 @@
 ### Sign Up
 
 - [x] email을 입력 받고 DB에 없는 email인 경우 인증 메일을 발송한다.
-- [x] 인증이 완료되면 password를 입력 받아 account를 생성한다.
+- [x] 인증이 완료되면 name, password를 입력 받아 account를 생성한다.
 
 ## 참고사항
 

@@ -78,7 +78,7 @@ const Enter: NextPage = () => {
               required
             />
             {errors.formErrors ? (
-              <span className="my-2 block bg-red-50 text-center font-medium text-red-600">
+              <span className="my-2 block text-center font-medium text-red-600">
                 {errors.formErrors.message}
               </span>
             ) : null}

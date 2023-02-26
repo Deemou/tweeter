@@ -8,27 +8,25 @@ async function handler(
   res: NextApiResponse<ResponseType>
 ) {
   const { token } = req.body;
+  const email = req.session.auth?.email;
   const foundToken = await client.token.findUnique({
     where: {
       payload: token,
     },
   });
-  if (!foundToken)
+
+  if (!foundToken || foundToken.email !== email)
     return res.json({
       ok: false,
       error: "Invalid Token. Please check again.",
     });
 
-  req.session.user = {
-    id: foundToken.userId,
-  };
-  await req.session.save();
-
   await client.token.deleteMany({
     where: {
-      userId: foundToken.userId,
+      email: foundToken.email,
     },
   });
+
   return res.json({ ok: true });
 }
 
