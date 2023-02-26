@@ -6,6 +6,7 @@ import useMutation from "@/libs/client/useMutation";
 import cls from "@/libs/client/utils";
 import Textbox from "@/components/textbox";
 import Header from "@/components/header";
+import ThreadHeader from "@/components/ThreadHeader";
 
 interface IUser {
   id: number;
@@ -39,10 +40,10 @@ const TweetDetail: NextPage = () => {
     <>
       <Header />
       <div className="rounded-md border border-red-200 px-4 text-white">
-        <div className="flex items-center space-x-3 py-4">
-          <div className="h-8 w-8 rounded-md bg-red-400" />
-          <h3 className="text-lg font-medium">{data?.tweet.user.name}</h3>
-        </div>
+        <ThreadHeader
+          name={data?.tweet.user.name}
+          createdAt={data?.tweet.createdAt.toString()}
+        />
         <Textbox text={data?.tweet.text} textSize="text-lg" />
         <div className="my-2">
           <span className="text-base">{data?.likes} Likes</span>

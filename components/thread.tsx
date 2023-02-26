@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Textbox from "./textbox";
+import ThreadHeader from "./ThreadHeader";
 
 interface IUser {
   id: number;
@@ -10,17 +11,21 @@ interface ThreadProps {
   id: number;
   user: IUser;
   text: string;
+  createdAt: string;
   likes: number;
 }
 
-export default function Thread({ id, user, text, likes }: ThreadProps) {
+export default function Thread({
+  id,
+  user,
+  text,
+  createdAt,
+  likes,
+}: ThreadProps) {
   return (
     <Link href={`/tweet/${id}`}>
       <div className="cursor-pointer rounded-md border border-red-200 px-4 text-white hover:bg-zinc-900">
-        <div className="flex items-center space-x-3 py-4">
-          <div className="h-6 w-6 rounded-md bg-red-400" />
-          <h3 className="font-medium">{user.name}</h3>
-        </div>
+        <ThreadHeader name={user.name} createdAt={createdAt} />
         <Textbox text={text} />
         <div className="flex items-end justify-end">
           <div className="flex items-center space-x-0.5 text-sm">

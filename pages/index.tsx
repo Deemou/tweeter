@@ -99,6 +99,7 @@ const Home: NextPage = () => {
                 key={tweet.id}
                 user={tweet.user}
                 text={tweet.text}
+                createdAt={tweet.createdAt.toString()}
                 likes={tweet._count.likes}
               />
             ));
