@@ -5,6 +5,7 @@ import useSWR from "swr";
 import useMutation from "@/libs/client/useMutation";
 import cls from "@/libs/client/utils";
 import Textbox from "@/components/textbox";
+import Header from "@/components/header";
 
 interface IUser {
   id: number;
@@ -36,6 +37,7 @@ const TweetDetail: NextPage = () => {
   };
   return (
     <>
+      <Header />
       <div className="rounded-md border border-red-200 px-4 text-white">
         <div className="flex items-center space-x-3 py-4">
           <div className="h-8 w-8 rounded-md bg-red-400" />

@@ -21,6 +21,7 @@ export default function Header() {
       response.json()
     );
     if (logoutData.ok) {
+      console.log("logout", logoutData);
       router.replace(loginUrl);
     }
   };
