@@ -8,6 +8,7 @@ import { FormEvent, useEffect } from "react";
 import useMutation from "@libs/client/useMutation";
 import useInfiniteScroll from "@/libs/client/useInfiniteScroll";
 import useSWRInfinite from "swr/infinite";
+import Header from "@/components/header";
 
 interface UploadTweetForm {
   text: string;
@@ -79,6 +80,7 @@ const Home: NextPage = () => {
         <title>Home</title>
       </Head>
 
+      <Header />
       <div className="space-y-12">
         <form
           name="myForm"

@@ -21,14 +21,14 @@ export default function Header() {
       response.json()
     );
     if (logoutData.ok) {
-      router.replace(loginUrl);
+      location.reload();
     }
   };
   return (
     <div className="mb-6 flex items-center justify-end space-x-3 p-2 px-4 font-medium text-white">
       {!isAuthPages() ? (
         <>
-          <span>Hello, {user?.name}!</span>
+          <span>{user ? `Hello, ${user?.name}!` : null}</span>
           <button
             onClick={onClick}
             className="rounded-lg border border-white bg-white px-2 py-1 text-black hover:bg-black hover:text-white"
