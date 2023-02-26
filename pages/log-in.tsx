@@ -45,8 +45,7 @@ const Enter: NextPage = () => {
   }, [data, setError]);
   useEffect(() => {
     if (data?.ok) {
-      console.log("login");
-      void router.replace("/");
+      location.reload();
     }
   }, [data, router]);
   return (

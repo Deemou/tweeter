@@ -20,8 +20,6 @@ export default function useUser() {
   }
 
   useEffect(() => {
-    console.log(router.pathname);
-    console.log(data);
     if (isAuthPages()) {
       if (data && data.ok) void router.replace("/");
       return;

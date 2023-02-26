@@ -1,8 +1,6 @@
 import "../global.css";
 import { SWRConfig } from "swr";
 import type { AppProps } from "next/app";
-import useUser from "@/libs/client/useUser";
-import Header from "@/components/header";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
