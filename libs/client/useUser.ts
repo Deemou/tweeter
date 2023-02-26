@@ -20,11 +20,14 @@ export default function useUser() {
   }
 
   useEffect(() => {
-    if (isAuthPages()) return;
+    if (isAuthPages()) {
+      if (data && data.ok) void router.replace("/");
+      return;
+    }
     if (data && !data.ok) {
       void router.replace(loginUrl);
       return;
     }
-  }, [data, router]);
+  }, [data]);
   return { user: data?.profile, isLoading: !data && !error };
 }

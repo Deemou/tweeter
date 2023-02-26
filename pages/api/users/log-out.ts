@@ -6,10 +6,9 @@ async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseType>
 ) {
-  req.session.destroy();
-  res.json({
-    ok: true,
-  });
+  await req.session.destroy();
+
+  res.json({ ok: true });
 }
 
 export default withApiSession(

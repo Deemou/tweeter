@@ -1,11 +1,8 @@
 import "../global.css";
 import { SWRConfig } from "swr";
 import type { AppProps } from "next/app";
-import useUser from "@/libs/client/useUser";
-import Header from "@/components/header";
 
 export default function App({ Component, pageProps }: AppProps) {
-  const { user } = useUser();
   return (
     <SWRConfig
       value={{
@@ -15,7 +12,6 @@ export default function App({ Component, pageProps }: AppProps) {
     >
       <div className="min-h-screen w-full bg-black py-4">
         <div className="mx-auto  w-full max-w-xl">
-          <Header />
           <Component {...pageProps} />
         </div>
       </div>
